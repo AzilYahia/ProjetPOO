@@ -2,23 +2,28 @@ package people;
 
 import medias.media;
 
-public abstract class bibliothecaire extends person{
+public  class bibliothecaire extends person{
+    //constructors
+    bibliothecaire(){}
+    public bibliothecaire(String nom, String prenom) {
+        super(nom, prenom);
+    }
+    public bibliothecaire(String nom, String prenom, char gender)
+    {
+        super(nom, prenom, gender);
+    }
+    public bibliothecaire(String nom, String prenom, char gender, String matricule) {
+        super(nom, prenom, gender, matricule);
+    }
+
+    //variables
     private int current=0;
     private adherent[] listeNoire;
 
+    //getters
     public adherent[] getListeNoire() {
         return listeNoire;
     }
-
-    public void ajouterAListeNoire(adherent adh) {
-        listeNoire[current] = adh;
-      current++;
-    }
-    public void supprimerListeNoire(adherent adh) {
-        listeNoire[current] = null;
-        current--;
-    }
-
     public int getCurrent() {
         return current;
     }
@@ -27,18 +32,39 @@ public abstract class bibliothecaire extends person{
         this.current = current;
     }
 
-    void enregistrer(adherent adh){};
-    void enregistrer(media med){};
-    void modifier(adherent adh){};
-    void modifier(media med){};
-    void supprimer(adherent adh){};
-    void supprimer(media med){};
+    //methods
+    public void ajouterAListeNoire(adherent adh) {
+        if(!adh.isDansListeNoire()) {
+            listeNoire[current] = adh;
+            adh.setDansListeNoire(true);
+            current++;
+        }
+    }
+    public void supprimerListeNoire(adherent adh) {
+        if (adh.isDansListeNoire()) {
+            listeNoire[current] = null;
+            current--;
+            adh.setDansListeNoire(false);
+        }
+    }
 
-     void afficherListeNoire(){
+    void enregistrer(adherent adh){}
+
+    void enregistrer(media med){}
+
+    void modifier(adherent adh){}
+
+    void modifier(media med){}
+
+    void supprimer(adherent adh){}
+
+    void supprimer(media med){}
+
+    void afficherListeNoire(){
         for(int i =0; i< current; i++)
         {
             System.out.println("l'adherent : " +listeNoire[i].nom +" "+ listeNoire[i].prenom+" est  dans la liste noire.");
         }
-    };
+    }
 
 }
