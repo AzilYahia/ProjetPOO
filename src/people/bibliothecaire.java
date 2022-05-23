@@ -1,10 +1,9 @@
 package people;
-
 import medias.media;
 
 public  class bibliothecaire extends person{
     //constructors
-    bibliothecaire(){}
+    public bibliothecaire(){}
     public bibliothecaire(String nom, String prenom) {
         super(nom, prenom);
     }
