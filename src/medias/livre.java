@@ -1,5 +1,6 @@
 package medias;
 
+import enums.MediaType;
 import people.adherent;
 
 public class livre extends media{
@@ -9,14 +10,9 @@ public class livre extends media{
     public String Auteur;
 
     //constructors
-    public livre() {}
-    public livre(int nombrePages, String reference, String auteur) {
-        this.nombrePages = nombrePages;
-        this.reference = reference;
-        Auteur = auteur;
-    }
-    public livre(String nom, int quota, adherent emprunterPar, int nombrePages, String reference, String auteur) {
-        super(nom, quota, emprunterPar);
+
+    public livre(String nom, int quota, int nombrePages, String reference, String auteur) {
+        super(nom, quota, MediaType.LIVRE);
         this.nombrePages = nombrePages;
         this.reference = reference;
         Auteur = auteur;

@@ -2,23 +2,29 @@ package people;
 
 import medias.media;
 
+import java.util.ArrayList;
+
 public  class bibliothecaire extends person{
     //constructors
-    bibliothecaire(){}
-    public bibliothecaire(String nom, String prenom) {
-        super(nom, prenom);
-    }
-    public bibliothecaire(String nom, String prenom, char gender)
-    {
-        super(nom, prenom, gender);
-    }
-    public bibliothecaire(String nom, String prenom, char gender, String matricule) {
+//    bibliothecaire(){}
+//    public bibliothecaire(String nom, String prenom) {
+//        super(nom, prenom);
+//    }
+//    public bibliothecaire(String nom, String prenom, char gender)
+//    {
+//        super(nom, prenom, gender);
+//    }
+    public bibliothecaire(String nom, String prenom, char gender, String matricule,ArrayList<adherent> listeDesAdherents,ArrayList<media> listeDesMedias) {
         super(nom, prenom, gender, matricule);
+        this.listeDesAdherents=listeDesAdherents;
+        this.listeDesMedias=listeDesMedias;
     }
 
     //variables
     private int current=0;
     private adherent[] listeNoire;
+    private ArrayList<media> listeDesMedias;
+    private ArrayList<adherent> listeDesAdherents;
 
     //getters
     public adherent[] getListeNoire() {
@@ -33,32 +39,60 @@ public  class bibliothecaire extends person{
     }
 
     //methods
-    public void ajouterAListeNoire(adherent adh) {
-        if(!adh.isDansListeNoire()) {
-            listeNoire[current] = adh;
-            adh.setDansListeNoire(true);
-            current++;
+
+    //manipulate les adherents
+
+    public void enregistrerAdherent(adherent newAdh){
+        adherent adh = adherent.getAdherent(newAdh.matricule);
+        if(adh != null) {
+            System.out.println("un adherent existe deja avec le meme matricule !");
+            return;
         }
-    }
-    public void supprimerListeNoire(adherent adh) {
-        if (adh.isDansListeNoire()) {
-            listeNoire[current] = null;
-            current--;
-            adh.setDansListeNoire(false);
-        }
+        listeDesAdherents.add(newAdh);
     }
 
-    void enregistrer(adherent adh){}
+    public void modifierAdherent(String matricule, String newNom, String newPrenom, char newGender){
+        adherent adh = adherent.getAdherent(matricule);
+        if(adh == null) {
+            return;
+        }
+        adh.nom=(!newNom.equals("")) ? newNom : adh.nom;
+        adh.prenom=(!newPrenom.equals("")) ? newPrenom : adh.prenom;
+        adh.gender=(newGender == ' ') ? newGender : adh.gender;
+    }
 
-    void enregistrer(media med){}
+    public void supprimerAdherent(String matricule){
+        adherent adh = adherent.getAdherent(matricule);
+        if(adh == null) {
+            return;
+        }
+        listeDesAdherents.remove(adh);
+    }
 
-    void modifier(adherent adh){}
+    //manipulate les medias
 
-    void modifier(media med){}
 
-    void supprimer(adherent adh){}
+    public void enregistrerMedia(media newMedia){
+        listeDesMedias.add(newMedia);
+    }
 
-    void supprimer(media med){}
+    public void modifierMedia(int id){
+        media med = media.getMedia(id);
+        if(med == null) {
+            return;
+        }
+//        media.nom=(!newNom.equals("")) ? newNom : adherent.nom;
+//        adherent.prenom=(!newPrenom.equals("")) ? newPrenom : adherent.prenom;
+//        adherent.gender=(newGender == ' ') ? newGender : adherent.gender;
+    }
+
+    public void supprimerMedia(int id){
+        media med = media.getMedia(id);
+        if(med == null) {
+            return;
+        }
+        listeDesMedias.remove(med);
+    }
 
     void afficherListeNoire(){
         for(int i =0; i< current; i++)
