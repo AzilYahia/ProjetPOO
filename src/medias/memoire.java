@@ -1,5 +1,6 @@
 package medias;
 
+import enums.MediaType;
 import people.adherent;
 
 public class memoire extends media {
@@ -8,15 +9,10 @@ public class memoire extends media {
     public String Auteur;
 
     //constructors
-    public memoire() {}
     public memoire(String nom, int quota, String theme, String auteur) {
-        super(nom, quota);
+        super(nom, quota, MediaType.MEMOIRE);
         this.theme = theme;
         Auteur = auteur;
     }
-    public memoire(String nom, int quota, adherent emprunterPar, String theme, String auteur) {
-        super(nom, quota, emprunterPar);
-        this.theme = theme;
-        Auteur = auteur;
-    }
+
 }

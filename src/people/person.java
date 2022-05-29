@@ -2,10 +2,10 @@ package people;
 
 public abstract class person {
     //variables
-    String nom;
-    String prenom;
-    char gender;
-    String matricule;
+    public String nom;
+    public String prenom;
+    public char gender;
+    public String matricule;
 
     //constructors
     person(){}
