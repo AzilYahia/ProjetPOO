@@ -29,7 +29,6 @@ public class Main {
         adherent adh1=new adherent("rafik","kasmi",'M',"2021");
         Bib.enregistrerAdherent(adh1);
         Bib.enregistrerAdherent(new adherent("mouloudia","kasmi",'M',"20215"));
-
         Bib.supprimerAdherent("20215");
         cd media1=new cd("pes 2016",1,"jeux","geo");
         Bib.enregistrerMedia(media1);
@@ -43,6 +42,7 @@ public class Main {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dob="17-07-2002";
         LocalDate date = LocalDate.parse("19/06/2022", df);
+
 
         adh1.emprunter(1,date);
         adh1.restituer(1);

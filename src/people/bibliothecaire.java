@@ -1,20 +1,13 @@
 package people;
-
 import medias.media;
 
 import java.util.ArrayList;
 
 public  class bibliothecaire extends person{
     //constructors
-//    bibliothecaire(){}
-//    public bibliothecaire(String nom, String prenom) {
-//        super(nom, prenom);
-//    }
-//    public bibliothecaire(String nom, String prenom, char gender)
-//    {
-//        super(nom, prenom, gender);
-//    }
+
     public bibliothecaire(String nom, String prenom, char gender, String matricule,ArrayList<adherent> listeDesAdherents,ArrayList<media> listeDesMedias) {
+
         super(nom, prenom, gender, matricule);
         this.listeDesAdherents=listeDesAdherents;
         this.listeDesMedias=listeDesMedias;
