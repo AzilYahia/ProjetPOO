@@ -36,7 +36,6 @@ public class emprunt {
         LocalDate now = LocalDate.now();
         LocalDate dernierDelai=this.dateDuRetourPrevue.plusDays(10);
         long diffDesJours = DAYS.between(now,dernierDelai);
-        System.out.println("vous etes en retard de "+ diffDesJours+" jours");
         return diffDesJours<0;
     }
 
