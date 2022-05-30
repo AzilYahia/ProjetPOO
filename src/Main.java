@@ -1,17 +1,16 @@
 import enums.Gender;
-import enums.MediaType;
 import menus.AdherentMenu;
 import menus.BibliothecaireMenu;
 import people.*;
 import medias.*;
-
-import java.text.SimpleDateFormat;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
+
+/*
+Poo Projet
+Done By :  Rafik Kasmi and Yahya Azil
+Acad B
+*/
 
 public class Main {
      static void mainMenu(){
