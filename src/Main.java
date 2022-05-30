@@ -1,4 +1,7 @@
+import enums.Gender;
 import enums.MediaType;
+import menus.AdherentMenu;
+import menus.BibliothecaireMenu;
 import people.*;
 import medias.*;
 
@@ -8,9 +11,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Main {
-
+     static void mainMenu(){
+         System.out.println("Bienvenu Dans Notre Bibliotheque");
+        System.out.println("-------------------------");
+        System.out.println("Veuillez Selectionner Votre Role :");
+        System.out.println("- Entrer 1 pour Bibliothecaire.");
+         System.out.println("- Entrer 2 pour Adherent.");
+         System.out.println("- Entrer 0 pour Quitter.");
+    }
     public static void main(String[] args) {
         //Global Variables
         ArrayList<media> tabMedia = new ArrayList<media>();
@@ -19,36 +30,39 @@ public class Main {
         adherent.listeDesAdherents=tabUsers;
         media.listeDesMedias=tabMedia;
         emprunt.listeDesEmprunts=tabEmprunts;
-//        cd cd1 = new cd("pes 2016",20,"jeux");
-//        cd cd2 = new cd("pes 2015",20,"jeux");
-//        cd cd3 = new cd("pes 2017",20,"jeux");
-//        System.out.println(cd1.id);
-//        System.out.println(cd2.id);
-//        System.out.println(cd3.id);
-        bibliothecaire Bib=new bibliothecaire("rafik","kasmi",'M',"2020",tabUsers,tabMedia);
-        adherent adh1=new adherent("rafik","kasmi",'M',"2021");
-        Bib.enregistrerAdherent(adh1);
-        Bib.enregistrerAdherent(new adherent("mouloudia","kasmi",'M',"20215"));
+        //dummy data
+        BibliothecaireMenu.bib=new bibliothecaire("kasmi","rafik", Gender.MALE,"2020");
+        BibliothecaireMenu.bib.enregistrerMedia(new cd("cours analyse",40,"rwre","trae"));
+        BibliothecaireMenu.bib.enregistrerMedia(new livre("The 100$ Startup",40,250,"trae","Chris Guillebeau"));
+        BibliothecaireMenu.bib.enregistrerMedia(new memoire("Deep Learning for tamazight",40,"A.I","Rafik Kasmi"));
+        BibliothecaireMenu.bib.enregistrerAdherent(new adherent("Azil","Yahya",Gender.MALE,"007"));
 
-        Bib.supprimerAdherent("20215");
-        cd media1=new cd("pes 2016",1,"jeux","geo");
-        Bib.enregistrerMedia(media1);
-        Bib.enregistrerMedia(new livre("les miserables",20,50,"rarea","rear"));
-        Bib.enregistrerMedia(new memoire("tamzight machine learning",20,"rafd","reawr"));
-//        adherent.afficherTous();
-//        for (adherent adh : tabUsers) {
-//            System.out.println(adh.nom);
-//        }
-        adh1.consulter(1);
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dob="17-07-2002";
-        LocalDate date = LocalDate.parse("19/06/2022", df);
+        Scanner input = new Scanner(System.in);
+        int roleChoice;
+        do{
+            mainMenu();
+            roleChoice = input.nextInt();
+            input.nextLine();
+         switch (roleChoice){
+             case 1:
+                 BibliothecaireMenu.mainMenu();
+                 break;
+             case 2:
+                 System.out.println("Entrer ton matricule :");
+                 String matricule = input.nextLine();
+                 adherent User=adherent.getAdherent(matricule);
+                 if(User==null){
+                     System.out.println("un Adherent avec ce matricule n'existe pas !");
+                     break;
+                 }
+                 //setting the user in the adherent menu
+                 AdherentMenu.adh=User;
+                 AdherentMenu.mainMenu();
+                 break;
+             default:
+                 break;
+         }
+        }while(roleChoice != 0);
 
-        adh1.emprunter(1,date);
-        adh1.restituer(1);
-        adh1.emprunter(99,date);
-        adh1.restituer(19);
-        adh1.emprunter(3,date);
-        emprunt.afficherTous();
     }
 }
