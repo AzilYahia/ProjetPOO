@@ -53,4 +53,19 @@ public abstract class media {
         }
         return null;
     }
+    public static void afficherTous(){
+        if(listeDesMedias.isEmpty()){
+            System.out.println("La Listes des medias est vide pour l'instant");
+            return;
+        }
+
+        System.out.println("+------+----------------------+-------+---------+");
+        System.out.println("|  ID  |      Nom             | Quota |   Type  |");
+        System.out.println("+------+----------------------+-------+---------+");
+        String leftAlignFormat = "| %-4d | %-20s | %-4d | %-7s |%n";
+        for (media med : listeDesMedias) {
+            System.out.format(leftAlignFormat, med.id, med.nom , med.quota , med.type);
+        }
+        System.out.println("+------+----------------------+-------+---------+");
+    }
 }

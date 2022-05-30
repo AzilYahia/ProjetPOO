@@ -8,4 +8,12 @@ public enum MediaType {
     MediaType(int num) {
         this.num = num;
     }
+    public static MediaType fromNum(int num) {
+        for (MediaType type : MediaType.values()) {
+            if (type.num == num) {
+                return type;
+            }
+        }
+        return null;
+    }
 }

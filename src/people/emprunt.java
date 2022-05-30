@@ -34,8 +34,10 @@ public class emprunt {
     }
     public boolean estTard(){
         LocalDate now = LocalDate.now();
-        long diffDesJours = DAYS.between(now,this.dateDuRetourPrevue);
-        return diffDesJours>=10;
+        LocalDate dernierDelai=this.dateDuRetourPrevue.plusDays(10);
+        long diffDesJours = DAYS.between(now,dernierDelai);
+        System.out.println("TIZMOK "+ diffDesJours);
+        return diffDesJours<0;
     }
 
 
